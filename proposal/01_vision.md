@@ -2,33 +2,104 @@
 Status: DRAFTING        (SKELETON -> DRAFTING -> CHOSEN -> LOCKED)
 Word limit: ~1,400-1,500 words (part of the 6-page V&A PDF)
 Locked date: -
+Opening: B (claim-first, "the number") — chosen by the PI, 11 July 2026.
+Citations: inline [n] keys follow the draft order of docs/05_reference_list.md.
+Reconcile every key against the final proposal/06_references.md before submission
+(see the renumbering warning in docs/05).
 -->
 
 # Vision
 
-## Live decision (do this first)
+Two complete variants. Both use **Opening B** verbatim and share the Background and
+Research Challenge, The Research Opportunity, Impact and Beneficiaries, and Scope and
+Funding Rationale sections. They differ in **Novelty and Scientific Contribution** and
+**Timeliness**:
 
-The opening is undecided. Three drafted candidates sit in `library/vision_openings_current.md`:
-- **A** problem-first ("the blocked road") — classic register, safest
-- **B** claim-first ("no section of the winding ever sees more than 50 V of its 270 V bus") — the agreed register (a surprising claim containing a number); **standing recommendation**
-- **C** mission-first (the ATI collision: high-voltage is the named 2030 milestone, 10→15 kW/kg the target, and they collide at altitude)
+- **Variant 1 — constructive novelty, convergent timeliness.** Novelty built up in two
+  levels (architectural, then scientific, with the scientific level as the contribution);
+  Timeliness as three developments converging (the silicon, the ATI wall, the market pull).
+- **Variant 2 — adversarial novelty, collision timeliness.** Novelty argued by pre-empting
+  the three nearest pattern-matches and presenting the object that remains; Timeliness as
+  the ATI collision plus the finite, UK-held window.
 
-Whichever is chosen, **C's ATI numbers move into Timeliness** (physics carries the opening ~80/20; policy inverts toward 50/50 by Impact).
+Three tests (must pass before LOCK — both variants pass):
+- [x] Jet Zero named (Timeliness and Impact)
+- [x] Quantified UK figure with source (ATI 10→15 kW/kg [18]; £3.2 bn AAM and 111,000 jobs
+  carried with [PI TO CONFIRM] flags)
+- [x] Explicit "why EPSRC not industry" justification (Scope and Funding Rationale)
 
-## Agreed section structure (conventional academic sub-headings)
+---
+---
 
-1. **Background and Research Challenge** — the chosen opening + the standing IMD differentiation (integration so far *shortens* the converter–machine partition; this proposal *dissolves* it)
-2. **The Research Opportunity** — the architecture, then the cascade paragraph (see library file): derive, don't list; hierarchy (PD headline → redundancy multiplier → corollaries in one sentence); pay for it immediately (inter-slot coupling named as the price and the science)
-3. **Novelty and Scientific Contribution** — two levels: architectural (nobody has per-slot bilateral drive in a rotating machine; CVP differentiation) and scientific (the 2N-DOF single-object with no design theory; the crown jewel is the method framed as a discovery)
-4. **Timeliness** — enabling silicon only just demonstrated; ATI anchors (10→15 kW/kg, high-voltage 2030 milestone, MW distributed architectures); Jet Zero named
-5. **Impact and Beneficiaries** — academic (first design methodology for the N-element 2N-DOF drive) / industrial (Eaton, Airbus [PI TO CONFIRM]) / societal-economic (Jet Zero; ~111,000 jobs [PI TO CONFIRM]; £3.2 bn AAM [PI TO CONFIRM])
-6. **Scope and Funding Rationale** — TRL 1–3; pre-competitive public good; why EPSRC not industry/ATI; handoff at TRL 3 to partners for Innovate UK/ATI follow-on
+# VARIANT 1 — constructive novelty, convergent timeliness
 
-## Three tests (must pass before LOCK)
-- [ ] Jet Zero named
-- [ ] Quantified UK figure with source
-- [ ] Explicit "why EPSRC not industry" justification
+## Background and Research Challenge
 
-## Draft
+In the machine proposed here, no section of the winding ever sees more than 50 V of its 270 V bus — and from that single architectural fact, the constraints that define high-voltage aerospace machine design fall away together. Partial discharge cannot begin: at quarter-atmosphere the inception threshold is 200–300 V [13], four to fifteen times above the per-slot envelope, so the failure mode that dominates insulation design at altitude has no conditions in which to occur. The mechanism is not better insulation but a different architecture: a modular power-electronic drive at every stator slot, working bilaterally across an open-end winding, so that the bus voltage is composed magnetically along the machine and arrives at each slot already divided. The converter is no longer a box connected to the machine; it is distributed into the machine at the resolution of individual slots — and that same resolution is what turns the machine's remaining constraints into choices.
 
-*(To be built: 2–3 full variants from the chosen opening. Prior full drafts for phrasing: `library/versions_archive.md` — A2 "dissolve the partition" is the closest structural precedent.)*
+This removes the constraint the field is otherwise walking into. Aerospace electrification raises direct-current (DC) bus voltage in pursuit of power density [15,16], and partial discharge — the progressive, invisible electrical erosion of winding insulation — is the life-limiting mechanism that higher voltage feeds [13]. At cruise altitude, where ambient pressure falls to roughly a quarter of sea level, the inception voltage drops into the operating range of the machines the sector is now designing. Every existing countermeasure — thicker dielectrics, softened voltage edges, multilevel drives, inverters mounted onto the housing — helps the winding survive a voltage it should never have been asked to see. Integration as the literature practises it changes none of this: an integrated motor drive (IMD) is a conventional inverter relocated onto the machine — shorter cables, shared cooling, the same architecture — and the winding still meets the full bus voltage at its terminals. IMD shortens the converter–machine partition; this proposal dissolves it.
+
+## The Research Opportunity
+
+The architecture places a pair of integrated circuits (ICs) at every stator slot, each pair driving its own winding section from both conductor ends. There is no central converter, no converter-to-machine cabling, and no terminal at which the full bus voltage appears: the bus is composed magnetically along the winding itself, on the autotransformer principle the group demonstrated at above 99% efficiency [3], so that a 270 V bus divided across six to nine bilaterally driven sections presents each section with 20–50 V. The drive module is simultaneously the machine's per-slot excitation source and the converter's switching element; the winding conductor is simultaneously the force-producing medium and the converter's voltage-distribution network. Converter and machine become the same physical object.
+
+The consequences of driving every slot individually extend well beyond insulation. A machine of N driven sections is no longer a three-phase machine — it is an N-phase machine, or more precisely a machine for which phase count has ceased to be a design constraint at all. Lose one drive module and the remaining sections re-optimise: a nine-section machine retains roughly 89% of its torque where a three-phase machine losing one phase retains 58%, and it degrades continuously rather than in a step — the failure behaviour aerospace certification actually asks for. The same architecture removes the end-windings (conductors terminate directly at each slot's module, cutting 20–40% of winding resistance and shortening the machine), smooths the output through adiabatic switching (reducing ripple and switching loss), and makes the pole count a control-software parameter rather than a wiring decision — taking the mechanical gearbox with it. These are not independent claims: each is a consequence of the single decision to place the drive at the slot. That decision has a price, and the price is the science of this programme — N drives sharing one magnetic core are not independent, and whether their coupling can be controlled at full slot count, or fundamentally limits it, is the central open question this research resolves.
+
+## Novelty and Scientific Contribution
+
+The novelty operates at two levels, and the deeper level is the contribution.
+
+At the architectural level, no rotating machine has been driven bilaterally at every slot. Modular and multilevel drive research subdivides the DC link or stacks converter cells to relieve device voltage stress; the winding still terminates at the full system voltage, because the partition between converter and machine is retained. The closest prior art, the continuously-variable-pole machine [11,12], modulates two harmonic orders through a shared-bus inverter at the machine terminals; it establishes pole count as a control variable, but it does not distribute voltage into the winding, does not engage the insulation physics, and keeps the partition intact. No prior work reduces per-slot voltage below discharge inception by design — the move on which every consequence above depends.
+
+At the scientific level, the object this architecture creates has no design theory. When the converter is distributed into the winding at slot resolution, the machine, its power electronics, and its control cease to be three coupled systems and become a single electromagnetic object with 2N degrees of freedom — and no governing equations for that object exist, because until the enabling silicon existed it could not be built. Its physics is open at every interface: N sections excited independently through one shared iron core, so that each slot's switching perturbs its neighbours' control loops through the magnetics; adiabatic zero-voltage switching sourced by an inductive winding with back-electromotive force rather than the stiff battery cells of every prior demonstration [1]; drive electronics dissipating inside a winding environment at 120–150 °C against a junction limit near 150–175 °C. The 2N degrees of freedom are coupled through the shared magnetic circuit, and whether that coupling can be controlled — or whether it fundamentally limits the achievable slot count — is at once the proposal's boldest claim and its central admitted risk. The framework that binds circuit envelope, winding electromagnetics, thermal path, and control law into one solvable design problem is the primary contribution of this programme; the demonstrator machine is its evidence.
+
+## Timeliness
+
+Three developments converge on this moment. First, the enabling technology has only just come into existence. Per-slot drive needs floating gate drive, level shifting, dead-time control, and switching at every section — some thirty-six repetitions for an eighteen-slot bilateral machine, which in discrete form would outgrow the machine itself. The group's silicon removed that barrier: the complete per-slot infrastructure now fits on a single 15.2 mm² chip [1], with the floating-domain gate drive validated in the same 130 nm process [2]. The architecture was unrealisable until those demonstrations; this programme is their first consequence. Second, the UK's own roadmap has reached the wall this architecture removes. The Aerospace Technology Institute (ATI) strategy sets electric propulsion units a target of 10 kW/kg by 2030, rising to 15 kW/kg, and names high-voltage electrical architecture as the 2030 milestone on the way [18] — yet at altitude the partial-discharge threshold of 200–300 V [13] lies directly across that route. The same strategy prioritises megawatt-scale distributed electrical power architectures [18]; the per-slot machine is the machine-level realisation of that principle. Third, the application pull is immediate: the UK advanced air mobility market this power class serves is projected at £3.2 billion by 2030 [18] [PI TO CONFIRM: exact ATI source], inside the Jet Zero commitment to net-zero UK aviation by 2050.
+
+## Impact and Beneficiaries
+
+Academic beneficiaries — the electrical machines, power electronics, and control communities — gain the first design framework for the N-element, 2N-degree-of-freedom machine-drive object, a class of problem reusable wherever the converter–machine partition limits performance, plus the demonstrator's open experimental dataset. Industrial beneficiaries — UK propulsion integrators and their supply chain, engaged here through Eaton and Airbus [PI TO CONFIRM: letters of support] — gain an architecture that removes the dominant altitude failure mode by design, degrades gracefully in the way certification asks for, and deletes gearbox, end-windings, and converter cabinet from the mass budget. Societal and economic benefits flow through Jet Zero, the UK's commitment to net-zero aviation by 2050: the programme underpins the next-generation propulsion capability on which approximately 111,000 direct UK aerospace jobs depend [19] [PI TO CONFIRM: ADS edition], and provides the pre-competitive foundation for the UK advanced air mobility growth quantified above.
+
+## Scope and Funding Rationale
+
+This programme operates at technology readiness levels (TRL) 1–3. Its outputs are knowledge — the validated design framework, the measured inter-slot coupling characterisation, the control formulation, and an open dataset — not certified flight hardware, which is explicitly out of scope. The work is pre-competitive public good: a design theory for per-slot machines benefits the entire propulsion supply chain, and no single firm captures enough of that value to justify funding its creation alone. That is precisely why the Engineering and Physical Sciences Research Council (EPSRC), rather than industry or the ATI's nearer-term programmes, is the right sponsor: the investment purchases the foundational science once, openly, for the whole sector. At TRL 3 the validated framework hands off to Eaton and Airbus [PI TO CONFIRM: partner roles] as the entry point for follow-on Innovate UK or ATI development at TRL 4–6.
+
+*Word count: 1,492 (includes section headings, inline [n] keys, and [PI TO CONFIRM] flags; flags resolve out before submission)*
+
+---
+---
+
+# VARIANT 2 — adversarial novelty, collision timeliness
+
+## Background and Research Challenge
+
+In the machine proposed here, no section of the winding ever sees more than 50 V of its 270 V bus — and from that single architectural fact, the constraints that define high-voltage aerospace machine design fall away together. Partial discharge cannot begin: at quarter-atmosphere the inception threshold is 200–300 V [13], four to fifteen times above the per-slot envelope, so the failure mode that dominates insulation design at altitude has no conditions in which to occur. The mechanism is not better insulation but a different architecture: a modular power-electronic drive at every stator slot, working bilaterally across an open-end winding, so that the bus voltage is composed magnetically along the machine and arrives at each slot already divided. The converter is no longer a box connected to the machine; it is distributed into the machine at the resolution of individual slots — and that same resolution is what turns the machine's remaining constraints into choices.
+
+This removes the constraint the field is otherwise walking into. Aerospace electrification raises direct-current (DC) bus voltage in pursuit of power density [15,16], and partial discharge — the progressive, invisible electrical erosion of winding insulation — is the life-limiting mechanism that higher voltage feeds [13]. At cruise altitude, where ambient pressure falls to roughly a quarter of sea level, the inception voltage drops into the operating range of the machines the sector is now designing. Every existing countermeasure — thicker dielectrics, softened voltage edges, multilevel drives, inverters mounted onto the housing — helps the winding survive a voltage it should never have been asked to see. Integration as the literature practises it changes none of this: an integrated motor drive (IMD) is a conventional inverter relocated onto the machine — shorter cables, shared cooling, the same architecture — and the winding still meets the full bus voltage at its terminals. IMD shortens the converter–machine partition; this proposal dissolves it.
+
+## The Research Opportunity
+
+The architecture places a pair of integrated circuits (ICs) at every stator slot, each pair driving its own winding section from both conductor ends. There is no central converter, no converter-to-machine cabling, and no terminal at which the full bus voltage appears: the bus is composed magnetically along the winding itself, on the autotransformer principle the group demonstrated at above 99% efficiency [3], so that a 270 V bus divided across six to nine bilaterally driven sections presents each section with 20–50 V. The drive module is simultaneously the machine's per-slot excitation source and the converter's switching element; the winding conductor is simultaneously the force-producing medium and the converter's voltage-distribution network. Converter and machine become the same physical object.
+
+The consequences of driving every slot individually extend well beyond insulation. A machine of N driven sections is no longer a three-phase machine — it is an N-phase machine, or more precisely a machine for which phase count has ceased to be a design constraint at all. Lose one drive module and the remaining sections re-optimise: a nine-section machine retains roughly 89% of its torque where a three-phase machine losing one phase retains 58%, and it degrades continuously rather than in a step — the failure behaviour aerospace certification actually asks for. The same architecture removes the end-windings (conductors terminate directly at each slot's module, cutting 20–40% of winding resistance and shortening the machine), smooths the output through adiabatic switching (reducing ripple and switching loss), and makes the pole count a control-software parameter rather than a wiring decision — taking the mechanical gearbox with it. These are not independent claims: each is a consequence of the single decision to place the drive at the slot. That decision has a price, and the price is the science of this programme — N drives sharing one magnetic core are not independent, and whether their coupling can be controlled at full slot count, or fundamentally limits it, is the central open question this research resolves.
+
+## Novelty and Scientific Contribution
+
+Three families of prior work invite the comparison, and each fails it in an instructive way. Modular and multilevel drives subdivide the DC link or stack converter cells to relieve device voltage stress — but the winding still terminates at the full system voltage, so the insulation problem is untouched because the converter–machine partition is untouched. Integrated motor drives relocate a conventional inverter onto the machine housing — the partition is shortened, never removed. The continuously-variable-pole machine [11,12], the closest prior art, modulates two harmonic orders through a shared-bus inverter at the machine terminals: it establishes pole count as a control variable, and stops where this proposal begins — at terminal level, without distributing voltage into the winding or engaging the insulation physics that decides aerospace machine power density. No existing work drives a rotating machine at slot resolution, and none reduces per-slot voltage below discharge inception by design.
+
+What remains once the pattern-matches fail is an object the literature does not contain. A machine whose every slot is independently and bilaterally driven is not a machine attached to a converter: it is a single electromagnetic object with 2N degrees of freedom, whose circuit behaviour, field solution, thermal limits, and control law form one coupled problem. The field has no governing equations for that object — machine theory assumes terminal excitation, converter theory assumes a load characterised at its terminals, control theory assumes the two are separable — and deriving them is the scientific contribution this programme delivers. The derivation is genuinely open: the 2N degrees of freedom are coupled through the shared iron core, each slot's switching perturbs its neighbours through the magnetics, and no characterisation of that coupling at slot resolution exists anywhere. Whether it can be controlled at full slot count, or fundamentally limits it, is simultaneously the deepest novelty and the headline risk — the same question read from two directions — and the programme is built to answer it.
+
+## Timeliness
+
+The UK's aerospace strategy has scheduled a collision with physics, and this programme dissolves it. The Aerospace Technology Institute (ATI) roadmap sets electric propulsion units a target of 10 kW/kg by 2030, rising to 15 kW/kg, and names high-voltage electrical architecture as the 2030 milestone en route [18]. At cruise altitude, where ambient pressure is a quarter of sea level, the partial-discharge inception voltage falls to 200–300 V [13] — inside the operating envelope of the machines that milestone calls for. The route the strategy names undermines the target it sets, and no insulation programme resolves the conflict, because the conflict is architectural. The per-slot machine is the resolution: the system runs at the high voltage the roadmap asks for while no winding section sees more than 50 V, and the megawatt-scale distributed electrical architectures the same roadmap prioritises [18] gain their machine-level foundation. The window for answering this from the UK is open, and finite. The silicon that makes per-slot drive realisable was demonstrated only within the current design cycle, by the applicant group [1,2]; the nearest international work drives at terminal level with discrete hardware [11]. Acting while the capability is UK-held converts a head start into the design theory others will need — in direct support of the Jet Zero commitment to net-zero UK aviation by 2050 and an advanced air mobility market projected at £3.2 billion by 2030 [18] [PI TO CONFIRM: exact ATI source].
+
+## Impact and Beneficiaries
+
+Academic beneficiaries — the electrical machines, power electronics, and control communities — gain the first design framework for the N-element, 2N-degree-of-freedom machine-drive object, a class of problem reusable wherever the converter–machine partition limits performance, plus the demonstrator's open experimental dataset. Industrial beneficiaries — UK propulsion integrators and their supply chain, engaged here through Eaton and Airbus [PI TO CONFIRM: letters of support] — gain an architecture that removes the dominant altitude failure mode by design, degrades gracefully in the way certification asks for, and deletes gearbox, end-windings, and converter cabinet from the mass budget. Societal and economic benefits flow through Jet Zero, the UK's commitment to net-zero aviation by 2050: the programme underpins the next-generation propulsion capability on which approximately 111,000 direct UK aerospace jobs depend [19] [PI TO CONFIRM: ADS edition], and provides the pre-competitive foundation for the UK advanced air mobility growth quantified above.
+
+## Scope and Funding Rationale
+
+This programme operates at technology readiness levels (TRL) 1–3. Its outputs are knowledge — the validated design framework, the measured inter-slot coupling characterisation, the control formulation, and an open dataset — not certified flight hardware, which is explicitly out of scope. The work is pre-competitive public good: a design theory for per-slot machines benefits the entire propulsion supply chain, and no single firm captures enough of that value to justify funding its creation alone. That is precisely why the Engineering and Physical Sciences Research Council (EPSRC), rather than industry or the ATI's nearer-term programmes, is the right sponsor: the investment purchases the foundational science once, openly, for the whole sector. At TRL 3 the validated framework hands off to Eaton and Airbus [PI TO CONFIRM: partner roles] as the entry point for follow-on Innovate UK or ATI development at TRL 4–6.
+
+*Word count: 1,494 (includes section headings, inline [n] keys, and [PI TO CONFIRM] flags; flags resolve out before submission)*
